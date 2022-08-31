@@ -29,6 +29,7 @@ app.get('/test', (request, response) => {
 app.get('/books', getBooks);
 app.post('/books', createBooks);
 app.delete('/books/:id', deleteBooks);
+app.put('/books/:id', updateBooks)
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
 
@@ -49,3 +50,20 @@ async function deleteBooks(req, res, next){
     next(error)
   }
 }
+async function updateBooks(req, res, next){
+  try{
+    let id = req.params.id;
+    let updatedBook = await Books.findByIdAndUpdate(id, req.body, {new: true, overwrite: true});
+    res.status(200).send(updatedBook)
+  } catch(error){
+    next(error)
+  }
+}
+
+app.get('*', (request, response) => {
+  response.status(404).send('Not availabe');
+});
+
+app.use((error, req, res, next) => {
+  res.status(500).send(error.message)
+});
