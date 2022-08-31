@@ -12,6 +12,7 @@ Replace env sample with your own keys.
 We used Javascript on his application.
 ## Change Log
 29Aug22 We established a database to store information, and rendered it on our front-end.
+30Aug22 We established a way to delete and add books from the front end into our database.
 ## Estimates
 
 ## Credit and Collaborations
